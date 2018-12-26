@@ -1,4 +1,5 @@
 /*PAT B1001*/
+#include <stdio.h>
 int main(int argc, char const *argv[])
 {
 	/* code */
@@ -12,6 +13,5 @@ int main(int argc, char const *argv[])
         step++;
     }
     printf("Take %d steps.\n",step);
-    system("pause");
 	return 0;
 }
