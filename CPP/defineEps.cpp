@@ -9,10 +9,10 @@ int main(int argc, char const *argv[])
 	double db1 = 4 * asin(sqrt(2)/2);
 	double db2 = 3 * asin(sqrt(3)/2);
 	double tiny = fabs(db2-db1);
-	printf("The true value of pi is %f.\n",Pi);
-	printf("The db1 value is %f.\n",db1);
-	printf("The db2 value is %f.\n",db2);
-	printf("The tiny diff of two dbs is %f.\n",tiny); 
+	printf("The true value of pi is %.16f.\n",Pi);
+	printf("The db1 value is %.16f.\n",db1);
+	printf("The db2 value is %.16f.\n",db2);
+	printf("The tiny diff of two dbs is %.16f.\n",tiny); 
 	printf("Old judge as below:\n");
 	if(db1==db2)
 	{
