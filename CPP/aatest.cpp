@@ -103,6 +103,8 @@
 // 	return 0;
 // }
 
+
+// /*PAT B1001*/
 // int main(int argc, char const *argv[])
 // {
 // 	/* code */
@@ -120,6 +122,58 @@
 // }
 
 
+// /*PAT B1032*/
+// #include <stdio.h>
+// int main()
+// {
+// 	int n;
+// 	scanf("%d",&n);
+// 	int school[100010] = {0};
+// 	for(int i = 1;i <= n;i++)
+// 	{
+// 		int schID,score;
+// 		scanf("%d%d",&schID,&score);
+// 		school[schID] += score;
+// 	}
+// 	int MAX = -1,k;
+// 	for(int i = 1;i <= 10010;i++)
+// 	{
+// 		if(school[i]>MAX)
+// 		{
+// 			MAX = school[i];
+// 			k = i;
+// 		}
+// 	}
+// 	printf("%d %d\n",k,MAX);
+// 	return 0;
+// }
+
+
+// /*codeup 1934*/
+// #include <stdio.h>
+// int main()
+// {
+// 	int n,x,k,array[200] = {0};
+// 	scanf("%d",&n);
+// 	for(int i = 0;i < n;i++)
+// 	{
+// 		scanf("%d",array+i);
+// 	}
+// 	scanf("%d",&x);
+// 	for(k = 0;k < n;k++)
+// 	{
+// 		if(x==array[k])
+// 		{
+// 			printf("%d\n",k);
+// 			break;
+// 		}	
+// 	}
+// 	if(k==n)printf("-1\n");
+// 	return 0;
+// }
+
+
+// /*PAT B1036*/
 // int main()
 // {
 // 	int N,line;
@@ -141,8 +195,194 @@
 // 	return 0;
 // }
 
-// Hello.cpp : 定义控制台应用程序的入口点。
-//
+
+// /*PAT B1009*/
+// #include <stdio.h>
+// #include <string.h>
+// int main(int argc, char const *argv[])
+// {
+// 	char str[85];
+// 	gets(str);
+// 	int len = strlen(str),row = 0,column = 0;
+// 	char ans[85][85];
+// 	for(int i = 0;i < len;i++)
+// 	{
+// 		if(str[i]!=' ')
+// 		{
+// 			ans[row][column++] = str[i];
+// 		}
+// 		else
+// 		{
+// 			ans[row++][column] = '\0';
+// 			column = 0;
+// 		}
+// 	}
+// 	for(int i = row;i >= 0;i--)
+// 	{
+// 		printf("%s",ans[i]);
+// 		if(i)printf(" ");
+// 		else printf("\n");
+// 	}
+// 	return 0;
+// }
+
+
+
+// /*简单排序*/
+// #include <stdio.h>
+// int main()
+// {
+// 	printf("How many numbers to be sorted?\n");
+// 	int n;
+// 	scanf("%d",&n);
+// 	int nums[n];
+// 	for(int i = 0;i < n;i++)scanf("%d",nums+i);
+// 	for(int i = 0;i < n;i++)
+// 	{
+// 		for(int j = i+1;j < n;j++)
+// 		{
+// 			if(nums[j]<nums[i])
+// 			{
+// 				int temp = nums[i];
+// 				nums[i] = nums[j];
+// 				nums[j] = temp;
+// 			}
+// 		}
+// 	}
+// 	for(int i = 0;i < n;i++)printf("%d\n",nums[i]);
+// 	return 0;
+// }
+
+
+// /*选择排序*/
+// #include <stdio.h>
+// #include <ctime>
+// #include <algorithm>
+// void sortting(int n,int *p)
+// {
+// 	for(int i = 0;i < n;i++)
+// 	{
+// 		for(int j = i+1;j < n;j++)
+// 		{
+// 			if(p[j]<p[i])
+// 			{
+// 				int temp = p[i];
+// 				p[i] = p[j];
+// 				p[j] = temp;
+// 			}
+// 		}
+// 	}
+// }
+// int main()
+// {
+// 	printf("How many numbers to be sorted?\n");
+// 	int n;
+// 	scanf("%d",&n);
+// 	int *nums = new int[n];
+// 	srand(time(0));
+// 	for(int i = 0;i < n;i++)nums[i] = (rand()%1000);
+// 	printf("Before sortting:\n");
+// 	for(int i = 0;i < n;i++)
+// 	{
+// 		if(i%8==0&&i!=0)printf("\n");
+// 		printf("%8d",nums[i]);
+// 	}
+// 	printf("\n");
+// 	sortting(n,nums);
+// 	printf("After sortting:\n");
+// 	for(int i = 0;i < n;i++)
+// 	{
+// 		if(i%8==0&&i!=0)printf("\n");
+// 		printf("%8d",nums[i]);
+// 	}
+// 	printf("\n");
+// delete []nums;
+// 	return 0;
+// }
+
+
+/*插入排序*/
+// #include <stdio.h>
+// #include <ctime>
+// #include <algorithm>
+// void sortting(int n,int *p)
+// {
+// 	for(int i = 1;i < n;i++)
+// 	{
+// 		for(int j = 0;j < i;j++)
+// 		{
+// 			if(p[i]<p[j])
+// 			{
+// 				int temp = p[i];
+// 				for(int k = i;k > j;k--)p[k]=p[k-1];
+// 				p[j] = temp;
+// 			}
+// 		}
+// 	}
+// }
+// int main()
+// {
+// 	printf("How many numbers to be sorted?\n");
+// 	int n;
+// 	scanf("%d",&n);
+// 	int *nums = new int[n];
+// 	srand(time(0));
+// 	for(int i = 0;i < n;i++)nums[i] = (rand()%1000);
+// 	printf("Before sortting:\n");
+// 	for(int i = 0;i < n;i++)
+// 	{
+// 		if(i%8==0&&i!=0)printf("\n");
+// 		printf("%8d",nums[i]);
+// 	}
+// 	printf("\n");
+// 	sortting(n,nums);
+// 	printf("After sortting:\n");
+// 	for(int i = 0;i < n;i++)
+// 	{
+// 		if(i%8==0&&i!=0)printf("\n");
+// 		printf("%8d",nums[i]);
+// 	}
+// 	printf("\n");
+// 	delete []nums;
+// 	return 0;
+// }
+
+
+// /*调用函数排序*/
+// #include <stdio.h>
+// #include <ctime>
+// #include <algorithm>
+// using namespace std;
+// void printArray(int n,int *p)
+// {
+// 	for(int i = 0;i < n;i++)
+// 	{
+// 		if(i%8==0&&i!=0)printf("\n");
+// 		printf("%8d",p[i]);
+// 	}
+// 	printf("\n");
+// }
+// bool cmp(int a,int b)
+// {
+// 	return a < b;
+// }
+// int main()
+// {
+// 	printf("How many numbers to be sorted?\n");
+// 	int n;
+// 	scanf("%d",&n);
+// 	int *nums = new int[n];
+// 	srand(time(0));
+// 	for(int i = 0;i < n;i++)nums[i] = (rand()%1000);
+// 	printf("Before sortting:\n");
+// 	printArray(n,nums);
+// 	sort(nums,nums+n,cmp);
+// 	printf("After sortting:\n");
+// 	printArray(n,nums);
+// 	delete []nums;
+// 	return 0;
+// }
+
 
 /*阶乘运算*/
 using namespace std;
