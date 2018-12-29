@@ -370,29 +370,39 @@
 // {
 // 	printf("How many numbers to be sorted?\n");
 // 	int n;
+// 	double duration = 0.0;
+// 	clock_t start,end;
 // 	scanf("%d",&n);
 // 	int *nums = new int[n];
 // 	srand(time(0));
 // 	for(int i = 0;i < n;i++)nums[i] = (rand()%1000);
 // 	printf("Before sortting:\n");
 // 	printArray(n,nums);
+// 	start = clock();
 // 	sort(nums,nums+n,cmp);
+// 	end = clock();
+// 	duration = (double)(end-start)/CLOCKS_PER_SEC;
 // 	printf("After sortting:\n");
 // 	printArray(n,nums);
+// 	printf("Totally %f seconds used.\n",duration);
 // 	delete []nums;
 // 	return 0;
 // }
 
 
-/*阶乘运算*/
+/*10000以内阶乘运算*/
 using namespace std;
 void Print_Factorial(const int N);
 
 int main()
 {
 	int N;
-
 	scanf("%d", &N);
+	if(N < 0 || N > 10000)
+	{
+		printf("Invalid input.\n");
+		return -1;
+	}
 	Print_Factorial(N);
 	return 0;
 }
@@ -400,7 +410,7 @@ int main()
 void numUp(int *p,int n)
 {
 	int x;
-	for (int i = 0; i<n; i++)
+	for (int i = 0; i <= n; i++)
 	{
 		if (p[i]>9)
 		{
@@ -423,17 +433,9 @@ int ansnum(int n)
 
 void Print_Factorial(const int N)
 {
-	if (N<0 || N>1000)
-	{
-		printf("Invalid input\n");
-		return;
-	}
 	int i, j,m = ansnum(N);
 	int *result = new int[m+1];
-	for (int i = 0; i <= m; i++)
-	{
-		*(result + i) = 0;
-	}
+	for (int i = 0; i <= m; i++)result[i] = 0;
 	result[0] = 1;
 	for (i = 1; i < N + 1; i++)
 	{
@@ -443,7 +445,7 @@ void Print_Factorial(const int N)
 			result[j] *= i;
 			j++;
 		}
-		numUp(result,m+1);
+		numUp(result,m);
 	}
 	int k = m;
 	while (result[k] == 0)k--;
@@ -452,6 +454,6 @@ void Print_Factorial(const int N)
 		printf("%d", result[k]);
 	}
 	printf("\n");
-	delete[]result;
+	delete []result;
 }
 
