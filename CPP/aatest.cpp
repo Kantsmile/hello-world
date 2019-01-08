@@ -1,6 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #include "aaprofile.h"
 /*int main()
 {
@@ -390,70 +390,121 @@
 // }
 
 
-/*10000以内阶乘运算*/
-using namespace std;
-void Print_Factorial(const int N);
+// /*10000以内阶乘运算*/
+// using namespace std;
+// void Print_Factorial(const int N);
 
+// int main()
+// {
+// 	int N;
+// 	scanf("%d", &N);
+// 	if(N < 0 || N > 10000)
+// 	{
+// 		printf("Invalid input.\n");
+// 		return -1;
+// 	}
+// 	Print_Factorial(N);
+// 	return 0;
+// }
+
+// void numUp(int *p,int n)
+// {
+// 	int x;
+// 	for (int i = 0; i <= n; i++)
+// 	{
+// 		if (p[i]>9)
+// 		{
+// 			x = p[i] / 10;
+// 			p[i] %= 10;
+// 			p[i + 1] += x;
+// 		}
+// 	}
+// }
+
+// int ansnum(int n)
+// {
+// 	double digits = 0.0;
+// 	for (int i = 1; i <= n; i++)
+// 	{
+// 		digits += log10(i);
+// 	}
+// 	return int(floor(digits));
+// }
+
+// void Print_Factorial(const int N)
+// {
+// 	int i, j,m = ansnum(N);
+// 	int *result = new int[m+1];
+// 	for (int i = 0; i <= m; i++)result[i] = 0;
+// 	result[0] = 1;
+// 	for (i = 1; i < N + 1; i++)
+// 	{
+// 		j = 0;
+// 		while (j <= m)
+// 		{
+// 			result[j] *= i;
+// 			j++;
+// 		}
+// 		numUp(result,m);
+// 	}
+// 	int k = m;
+// 	while (result[k] == 0)k--;
+// 	for (; k > -1; k--)
+// 	{
+// 		printf("%d", result[k]);
+// 	}
+// 	printf("\n");
+// 	delete []result;
+// }
+
+
+
+/*PAT 1025*/
+#include <algorithm>
+#include <string.h>
+using namespace std;
+struct Student
+{
+	char id[15];
+	int score;
+	int local_rank;
+	int location;
+}stu[30001];
+bool cmp(Student a,Student b)
+{
+	if(a.score!=b.score)return a.score > b.score;
+	else return a.id < b.id;
+}
 int main()
 {
-	int N;
-	scanf("%d", &N);
-	if(N < 0 || N > 10000)
+	int n,k,num=0;
+	scanf("%d",&n);
+	for(int i=0;i<n;i++)
 	{
-		printf("Invalid input.\n");
-		return -1;
+		scanf("%d",&k);
+		int j = k;
+		while(j--)
+		{
+			scanf("%S %d",stu[num].id,&stu[num].score);
+			stu[num].location = i+1;
+			num++;
+		}
+		sort(stu+num-k,stu+num,cmp);
+		stu[num-k].local_rank = 1;
+		for(int j=num-k+1;j<num;j++)
+		{
+			if(stu[j].score==stu[j-1].score)stu[j].local_rank=stu[j-1].local_rank;
+			else stu[j].local_rank = j-num+k+1;
+		}
 	}
-	Print_Factorial(N);
+	printf("%d\n",num);
+	int r = 1;
+	sort(stu,stu+num,cmp);
+	for(int i=0;i<num;i++)
+	{
+		printf("%s ",stu[i].id);
+		if(i>0&&stu[i].score!=stu[i-1].score)r=i+1;
+		printf("%d %d %d\n",r,stu[i].location,stu[i].local_rank);
+	}
 	return 0;
 }
-
-void numUp(int *p,int n)
-{
-	int x;
-	for (int i = 0; i <= n; i++)
-	{
-		if (p[i]>9)
-		{
-			x = p[i] / 10;
-			p[i] %= 10;
-			p[i + 1] += x;
-		}
-	}
-}
-
-int ansnum(int n)
-{
-	double weishu = 0.0;
-	for (int i = 1; i <= n; i++)
-	{
-		weishu += log10(i);
-	}
-	return int(floor(weishu));
-}
-
-void Print_Factorial(const int N)
-{
-	int i, j,m = ansnum(N);
-	int *result = new int[m+1];
-	for (int i = 0; i <= m; i++)result[i] = 0;
-	result[0] = 1;
-	for (i = 1; i < N + 1; i++)
-	{
-		j = 0;
-		while (j <= m)
-		{
-			result[j] *= i;
-			j++;
-		}
-		numUp(result,m);
-	}
-	int k = m;
-	while (result[k] == 0)k--;
-	for (; k > -1; k--)
-	{
-		printf("%d", result[k]);
-	}
-	printf("\n");
-	delete []result;
-}
-
