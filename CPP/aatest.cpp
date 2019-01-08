@@ -473,7 +473,7 @@ struct Student
 bool cmp(Student a,Student b)
 {
 	if(a.score!=b.score)return a.score > b.score;
-	else return a.id < b.id;
+	else return strcmp(a.id,b.id)<0;
 }
 int main()
 {
@@ -485,7 +485,7 @@ int main()
 		int j = k;
 		while(j--)
 		{
-			scanf("%S %d",stu[num].id,&stu[num].score);
+			scanf("%s %d",stu[num].id,&stu[num].score);
 			stu[num].location = i+1;
 			num++;
 		}
