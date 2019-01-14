@@ -3,10 +3,11 @@ from __future__ import division
 
 # 导入时间模块
 import time
+import sys
 
 ################算法根据马青公式计算圆周率####################
 
-number = int(raw_input('请输入想要计算到小数点后的位数n:'))
+number = int(raw_input('Input digits you want n:'))
 
 # 计算当前时间
 time1 = time.time()
@@ -49,4 +50,4 @@ result = paistring[0]+str('.')+paistring[1:len(paistring)]
 print result
 
 time2 = time.time()
-print u'总共耗时：' + str(time2 - time1) + 's'
+print 'Time consuming:' + str(time2 - time1) + 's'
