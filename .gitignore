@@ -1,6 +1,5 @@
 *.exe
 *.out
 *.pyc
-/PY/__pycache__/
-/CPP/.vscode/
-/PY/.vscode/
+__pycache__/
+.vscode/
