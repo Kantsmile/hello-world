@@ -7,6 +7,7 @@ void gp(int present)
 		for(int i=1;i<n+1;i++)
 			printf("%d ",P[i]);
 		printf("\n");
+		return;
 	}
 	for(int x=1;x<n+1;x++)
 	{
@@ -27,5 +28,7 @@ int main(int argc, char const *argv[])
 	for(int i=0;i<=n;i++)
 		hash[i]=false;
 	gp(1);
+	delete []P;
+	delete []hash;
 	return 0;
 }
