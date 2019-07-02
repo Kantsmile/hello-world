@@ -459,52 +459,147 @@
 
 
 
-/*PAT 1025*/
-#include <algorithm>
-#include <string.h>
-using namespace std;
-struct Student
-{
-	char id[15];
-	int score;
-	int local_rank;
-	int location;
-}stu[30001];
-bool cmp(Student a,Student b)
-{
-	if(a.score!=b.score)return a.score > b.score;
-	else return strcmp(a.id,b.id)<0;
-}
+// /*PAT 1025*/
+// #include <algorithm>
+// #include <string.h>
+// using namespace std;
+// struct Student
+// {
+// 	char id[15];
+// 	int score;
+// 	int local_rank;
+// 	int location;
+// }stu[30001];
+// bool cmp(Student a,Student b)
+// {
+// 	if(a.score!=b.score)return a.score > b.score;
+// 	else return strcmp(a.id,b.id)<0;
+// }
+// int main()
+// {
+// 	int n,k,num=0;
+// 	scanf("%d",&n);
+// 	for(int i=0;i<n;i++)
+// 	{
+// 		scanf("%d",&k);
+// 		int j = k;
+// 		while(j--)
+// 		{
+// 			scanf("%s %d",stu[num].id,&stu[num].score);
+// 			stu[num].location = i+1;
+// 			num++;
+// 		}
+// 		sort(stu+num-k,stu+num,cmp);
+// 		stu[num-k].local_rank = 1;
+// 		for(int j=num-k+1;j<num;j++)
+// 		{
+// 			if(stu[j].score==stu[j-1].score)stu[j].local_rank=stu[j-1].local_rank;
+// 			else stu[j].local_rank = j-num+k+1;
+// 		}
+// 	}
+// 	printf("%d\n",num);
+// 	int r = 1;
+// 	sort(stu,stu+num,cmp);
+// 	for(int i=0;i<num;i++)
+// 	{
+// 		printf("%s ",stu[i].id);
+// 		if(i>0&&stu[i].score!=stu[i-1].score)r=i+1;
+// 		printf("%d %d %d\n",r,stu[i].location,stu[i].local_rank);
+// 	}
+// 	return 0;
+// }
+
+
+// /*PAT_B1020月饼*/
+// #include <cstdio>
+// #include <algorithm>
+// using namespace std;
+// struct mooncake
+// {
+// 	float store;
+// 	float sumprice;
+// 	float price;
+// };
+// bool cmp(mooncake a,mooncake b)
+// {
+// 	return a.price > b.price;
+// }
+// int main()
+// {
+// 	int n;
+// 	float Demand;
+// 	struct mooncake *cake;
+// 	scanf("%d%f",&n,&Demand);
+// 	cake = new mooncake[n];
+// 	for(int i=0;i<n;i++)
+// 	{
+// 		scanf("%f",&cake[i].store);
+// 	}
+// 	for(int i=0;i<n;i++)
+// 	{
+// 		scanf("%f",&cake[i].sumprice);
+// 		cake[i].price = cake[i].sumprice / cake[i].store;
+// 	}
+// 	sort(cake,cake+n,cmp);
+// 	float answer = 0;
+// 	for(int i=0;i<n;i++)
+// 	{
+// 		if(Demand>=cake[i].store)
+// 		{
+// 			Demand-=cake[i].store;
+// 			answer+=cake[i].sumprice;
+// 		}
+// 		else
+// 		{
+// 			answer+=cake[i].price * Demand;
+// 			break;
+// 		}
+// 	}
+// 	printf("%.2f\n",answer );
+// 	delete []cake;
+// 	return 0;
+// }
+
+
+#include <cstdio>
 int main()
 {
-	int n,k,num=0;
-	scanf("%d",&n);
-	for(int i=0;i<n;i++)
+	int a[10],N=0,*p;
+	for(int i=0;i<10;i++)
 	{
-		scanf("%d",&k);
-		int j = k;
-		while(j--)
+		scanf("%d",&a[i]);
+		N+=a[i];
+	}
+	p=new int [N];
+	int k=0;
+	for(int i=0;i<10;i++)
+	{
+		if(a[i])
 		{
-			scanf("%s %d",stu[num].id,&stu[num].score);
-			stu[num].location = i+1;
-			num++;
-		}
-		sort(stu+num-k,stu+num,cmp);
-		stu[num-k].local_rank = 1;
-		for(int j=num-k+1;j<num;j++)
-		{
-			if(stu[j].score==stu[j-1].score)stu[j].local_rank=stu[j-1].local_rank;
-			else stu[j].local_rank = j-num+k+1;
+			for(int j=0;j<a[i];j++)
+			{
+				p[k]=i;
+				k++;
+			}
 		}
 	}
-	printf("%d\n",num);
-	int r = 1;
-	sort(stu,stu+num,cmp);
-	for(int i=0;i<num;i++)
+	if(p[0]==0)
 	{
-		printf("%s ",stu[i].id);
-		if(i>0&&stu[i].score!=stu[i-1].score)r=i+1;
-		printf("%d %d %d\n",r,stu[i].location,stu[i].local_rank);
+		for(int i=1;i<N;i++)
+		{
+			if(p[i])
+			{
+				p[0]=p[i];
+				p[i]=0;
+				break;
+			}
+		}
 	}
+	for(int i=0;i<N;i++)
+	{
+		printf("%d",p[i]);
+	}
+	printf("\n");
+	delete []p;
 	return 0;
 }
