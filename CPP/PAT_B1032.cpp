@@ -11,8 +11,8 @@ int main()
 		scanf("%d%d",&schID,&score);
 		school[schID] += score;
 	}
-	int MAX = -1,k;
-	for(int i = 1;i <= 10010;i++)
+	int MAX = -1,k=1;
+	for(int i = 1;i <= n;i++)
 	{
 		if(school[i]>MAX)
 		{
