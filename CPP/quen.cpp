@@ -7,7 +7,7 @@ bool judge()
 	{
 		for(int j=i+1;j<n+1;j++)
 		{
-			if(abs(i-j)==abs(P[i]-P[j]))
+			if(std::abs(i-j)==std::abs(P[i]-P[j]))
 				return false;
 		}
 	}
